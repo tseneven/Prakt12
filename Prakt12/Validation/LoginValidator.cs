@@ -1,12 +1,5 @@
-﻿using Prakt12.Data;
-using Prakt12.Data.Repositorys;
-using System;
-using System.Collections.Generic;
+﻿using Prakt12.Data.Repositorys;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Controls;
 
 namespace Prakt12.Validation

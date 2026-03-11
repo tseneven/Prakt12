@@ -1,19 +1,8 @@
 ﻿using Prakt12.Data.Repositorys;
 using Prakt12.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Prakt12.Pages
 {
@@ -24,6 +13,7 @@ namespace Prakt12.Pages
     {
 
         public IUser_Repository service { get; set; } = new User_Repository();
+
 
         public User? user { get; set; } = null;
 
@@ -61,8 +51,30 @@ MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 return;
             }
             NavigationService.Navigate(new AddPage(user));
+        }
 
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            if (user == null)
+            {
+                MessageBox.Show("Элемент не выбран");
+                return;
+            }
 
+            if(user.userProfile != null)
+            {
+                NavigationService.Navigate(new ProfilePage(user));
+            }
+            else
+            {
+                NavigationService.Navigate(new AddProfile(user));
+
+            }
+        }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new RoleUsers());
         }
     }
 }

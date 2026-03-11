@@ -18,17 +18,17 @@ namespace Prakt12.Pages
         public AddPage()
         {
             InitializeComponent();
-            DataContext = user;
-            Title.Content = "Добавление";
+            DataContext    = user;
+            Title.Content  = "Добавление";
             Button.Content = "Добавить";
         }
 
         public AddPage(User user)
         {
             InitializeComponent();
-            DataContext = user;
+            DataContext   = user;
             Title.Content = "Изменение";
-            isEdit = true;
+            isEdit        = true;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -61,6 +61,12 @@ namespace Prakt12.Pages
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             NavigationService.GoBack();
+        }
+
+        private void Page_Initialized(object sender, EventArgs e)
+        {
+
+
         }
     }
 }

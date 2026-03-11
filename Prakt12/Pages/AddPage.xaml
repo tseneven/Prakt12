@@ -8,7 +8,7 @@
       mc:Ignorable="d" 
        xmlns:validators="clr-namespace:Prakt12.Validation"
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="AddPage">
+      Title="AddPage" Initialized="Page_Initialized">
 
     <Grid>
         <Grid.RowDefinitions>

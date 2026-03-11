@@ -25,26 +25,32 @@
             <Button Background="AliceBlue" Margin="10" Click="Button_Click">Добавить</Button>
             <Button Background="AliceBlue" Margin="10" Click="Button_Click_1">Удалить</Button>
             <Button Background="AliceBlue" Margin="10" Click="Button_Click_2">Редактировать</Button>
+            <Button Background="AliceBlue" Margin="10" Click="Button_Click_3">Открыть профиль</Button>
+            <Button Background="AliceBlue" Margin="10" Click="Button_Click_4">Списки ролей</Button>
         </StackPanel>
         <ListView Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="2" Background="Black" ItemsSource="{Binding service.Users}" SelectedItem="{Binding user}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
                         <StackPanel Orientation="Vertical">
-                            <Label>Логин</Label>
+                            <TextBlock>Логин</TextBlock>
                             <TextBlock Text="{Binding Login}"></TextBlock>
                         </StackPanel>
                         <StackPanel Orientation="Vertical">
-                            <Label>Имя</Label>
+                            <TextBlock>Имя</TextBlock>
                             <TextBlock Text="{Binding Name}"></TextBlock>
                         </StackPanel>
                         <StackPanel Orientation="Vertical">
-                            <Label>Почта</Label>
+                            <TextBlock>Почта</TextBlock>
                             <TextBlock Text="{Binding Email}"></TextBlock>
                         </StackPanel>
                         <StackPanel Orientation="Vertical">
-                            <Label>Запись создана</Label>
+                            <TextBlock>Запись создана</TextBlock>
                             <TextBlock Text="{Binding CreatedAt}"></TextBlock>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock>Роль</TextBlock>
+                            <TextBlock Text="{Binding Role.Title}"></TextBlock>
                         </StackPanel>
                     </StackPanel>
                 </DataTemplate>

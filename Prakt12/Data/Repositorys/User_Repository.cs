@@ -1,10 +1,6 @@
-﻿using Prakt12.Models;
-using System;
-using System.Collections.Generic;
+﻿using Microsoft.EntityFrameworkCore;
+using Prakt12.Models;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace Prakt12.Data.Repositorys
@@ -29,6 +25,8 @@ namespace Prakt12.Data.Repositorys
                 Email = user.Email,
                 Password = user.Password,
                 CreatedAt = DateTime.Now.ToString(),
+                userProfile = null,
+                RoleId = 1
             };
 
             if(LoginIsExist(_user.Login) && EmailIsExist(_user.Email))
@@ -44,14 +42,14 @@ namespace Prakt12.Data.Repositorys
 
         public bool LoginIsExist(string login)
         {
-            login = login.Trim().ToLower();
+            login       = login.Trim().ToLower();
             bool result = _db.Users.Any(u => u.Login == login);
             return result;
         }
 
         public bool EmailIsExist(string email)
         {
-            email = email.Trim().ToLower();
+            email       = email.Trim().ToLower();
             bool result = _db.Users.Any(u => u.Email == email);
             return result;
         }
@@ -68,10 +66,10 @@ namespace Prakt12.Data.Repositorys
 
         public void GetAll()
         {
-            var users = _db.Users.ToList();
+            var users = _db.Users.Include(U => U.userProfile).Include(u => u.Role).ToList();
             Users.Clear();
             foreach (var user in users)
-            { 
+            {
                 Users.Add(user);
             }
         }
@@ -81,7 +79,7 @@ namespace Prakt12.Data.Repositorys
             if(Users.Count > 0)
             {
                 int lastId = Users.Max((a) => a.Id);
-                var users = _db.Users.ToList().Where((a) => a.Id > lastId);
+                var users  = _db.Users.ToList().Where((a) => a.Id > lastId);
                 foreach (var user in users)
                 {
                     Users.Add(user);
