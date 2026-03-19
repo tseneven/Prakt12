@@ -1,34 +1,37 @@
-﻿using Prakt12.Data.Repositorys;
+﻿using Prakt12.Data.Repositorys.GroupInterestRepository;
 using Prakt12.Data.Repositorys.UserRepository;
+using System;
+using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Controls;
 
 namespace Prakt12.Validation
 {
-    public class LoginValidator : ValidationRule
+    public class GroupValidation : ValidationRule
     {
-        public IUser_Repository service { get; set; } = new User_Repository();
+        private readonly IGroupInterest_Repository service  = new GroupInterest_Repository();
 
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
+
             var input = (value ?? "").ToString().Trim();
+
             if (input == string.Empty)
             {
                 return new ValidationResult(false, "Поле является обязательным");
             }
 
-            if(input.Length < 5)
+            if (service.GroupIsExist(input))
             {
-                return new ValidationResult(false, "Логин не должен быть менее 5 символов");
-            }
-
-            if (service.LoginIsExist(input))
-            {
-                return new ValidationResult(false, "Такой логин уже существует");
+                return new ValidationResult(false, "Такая группа уже существует");
             }
 
             return ValidationResult.ValidResult;
-        }
 
+
+        }
     }
 }

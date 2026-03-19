@@ -1,4 +1,5 @@
 ﻿using Prakt12.Data.Utils;
+using System.Collections.ObjectModel;
 
 namespace Prakt12.Models
 {
@@ -63,6 +64,13 @@ namespace Prakt12.Models
         {
             get => _roleId;
             set => SetProperty(ref _roleId, value);
+        }
+
+        private ObservableCollection<UserInterestGroup> _userInterestGroups;
+        public ObservableCollection<UserInterestGroup> UserInterestGroups 
+        { 
+            get => _userInterestGroups; 
+            set => SetProperty(ref _userInterestGroups, value); 
         }
 
     }

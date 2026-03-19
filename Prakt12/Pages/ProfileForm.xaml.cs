@@ -1,4 +1,5 @@
 ﻿using Prakt12.Data.Repositorys;
+using Prakt12.Data.Repositorys.UserProfileRepository;
 using Prakt12.Models;
 using System.Windows;
 using System.Windows.Controls;

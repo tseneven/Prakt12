@@ -1,0 +1,47 @@
+﻿<Page x:Class="Prakt12.Pages.GroupInterestList"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Prakt12.Pages"
+      mc:Ignorable="d" 
+      DataContext="{Binding RelativeSource={RelativeSource Self}}"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="GroupInterestList">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0" Grid.RowSpan="2">
+            <Button Background="AliceBlue" Margin="10" Click="Button_Click">Добавить</Button>
+            <Button Background="AliceBlue" Margin="10" Click="Button_Click_1">Удалить</Button>
+            <Button Background="AliceBlue" Margin="10" Click="Button_Click_2">Редактировать</Button>
+            <Button Background="AliceBlue" Margin="10" Click="Button_Click_3" FontSize="12">Добавление пользователя в группу</Button>
+            <Button Background="AliceBlue" Margin="10" Click="Button_Click_4">Назад</Button>
+        </StackPanel>
+        <ListView Style="{StaticResource MaterialDesignListView }" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="2" Background="Black" ItemsSource="{Binding servise.InterestGroups}" SelectedItem="{Binding InterestGroup}">
+            <ListView.ItemTemplate >
+                <DataTemplate>
+                    <StackPanel >
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock>Название</TextBlock>
+                            <TextBlock Text="{Binding Title}"></TextBlock>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock>Описание</TextBlock>
+                            <TextBlock Text="{Binding Description}"></TextBlock>
+                        </StackPanel>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <EventSetter Event="MouseDoubleClick" Handler="ListViewItem_MouseDoubleClick"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+        </ListView>
+    </Grid>
+</Page>

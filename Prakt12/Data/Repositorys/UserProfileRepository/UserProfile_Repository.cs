@@ -1,6 +1,6 @@
 ﻿using Prakt12.Models;
 
-namespace Prakt12.Data.Repositorys
+namespace Prakt12.Data.Repositorys.UserProfileRepository
 {
     public class UserProfile_Repository : IUserProfile_Repository
     {

@@ -1,4 +1,6 @@
 ﻿using Prakt12.Data.Repositorys;
+using Prakt12.Data.Repositorys.RoleRepository;
+using Prakt12.Data.Repositorys.UserRepository;
 using Prakt12.Models;
 using System.Windows;
 using System.Windows.Controls;
@@ -11,30 +13,36 @@ namespace Prakt12.Pages
     /// </summary>
     public partial class AddPage : Page
     {
-        public User user = new();
-        private IUser_Repository _service = new User_Repository();
+        public User user { get; set; }
+        public IUser_Repository _service { get; set; } = new User_Repository();
+        public IRoleRepository role_servise { get; set; } = new Role_Repository();
+        public Role role { get; set; } = new();
         bool isEdit = false;
 
         public AddPage()
         {
+            if (user == null)
+                user = new();
             InitializeComponent();
-            DataContext    = user;
-            Title.Content  = "Добавление";
+            Title.Content = "Добавление";
             Button.Content = "Добавить";
         }
 
-        public AddPage(User user)
+        public AddPage(User curUser)
         {
+            this.user = curUser;
+            role = curUser.Role;    
+            isEdit  = true;
             InitializeComponent();
-            DataContext   = user;
             Title.Content = "Изменение";
-            isEdit        = true;
+            Button.Content = "Изменить";
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
 
-
+            user.RoleId = role.Id;
             if (!isEdit)
             {
                 if (String.IsNullOrEmpty(user.Login)

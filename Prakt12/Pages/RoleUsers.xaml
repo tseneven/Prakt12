@@ -11,100 +11,19 @@
 
     <Grid Background="White">
         <StackPanel Margin="10">
-
-            <GroupBox Header="Пользователи" Margin="5">
-                <ListView Background="Black" ItemsSource="{Binding service.usersList}">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel>
-                                <StackPanel Orientation="Vertical">
-                                    <TextBlock>Логин</TextBlock>
-                                    <TextBlock Text="{Binding Login}"></TextBlock>
-                                </StackPanel>
-                                <StackPanel Orientation="Vertical">
-                                    <TextBlock>Имя</TextBlock>
-                                    <TextBlock Text="{Binding Name}"></TextBlock>
-                                </StackPanel>
-                                <StackPanel Orientation="Vertical">
-                                    <TextBlock>Почта</TextBlock>
-                                    <TextBlock Text="{Binding Email}"></TextBlock>
-                                </StackPanel>
-                                <StackPanel Orientation="Vertical">
-                                    <TextBlock>Запись создана</TextBlock>
-                                    <TextBlock Text="{Binding CreatedAt}"></TextBlock>
-                                </StackPanel>
-                                <StackPanel Orientation="Vertical">
-                                    <TextBlock>Роль</TextBlock>
-                                    <TextBlock Text="{Binding Role.Title}"></TextBlock>
-                                </StackPanel>
+            <Button HorizontalAlignment="Left" Click="Button_Click">Назад</Button>
+            <ListView Background="Black" ItemsSource="{Binding service.roleList}" SelectedItem="{Binding role}" SelectionChanged="ListView_Selected_1">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock>Роль: </TextBlock>
+                                <TextBlock Text="{Binding Title}"></TextBlock>
                             </StackPanel>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </GroupBox>
-
-            <GroupBox Header="Менеджеры" Margin="5">
-                <ListView Background="Black" ItemsSource="{Binding service.menegersList}">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel>
-                                <StackPanel Orientation="Vertical">
-                                    <TextBlock>Логин</TextBlock>
-                                    <TextBlock Text="{Binding Login}"></TextBlock>
-                                </StackPanel>
-                                <StackPanel Orientation="Vertical">
-                                    <TextBlock>Имя</TextBlock>
-                                    <TextBlock Text="{Binding Name}"></TextBlock>
-                                </StackPanel>
-                                <StackPanel Orientation="Vertical">
-                                    <TextBlock>Почта</TextBlock>
-                                    <TextBlock Text="{Binding Email}"></TextBlock>
-                                </StackPanel>
-                                <StackPanel Orientation="Vertical">
-                                    <TextBlock>Запись создана</TextBlock>
-                                    <TextBlock Text="{Binding CreatedAt}"></TextBlock>
-                                </StackPanel>
-                                <StackPanel Orientation="Vertical">
-                                    <TextBlock>Роль</TextBlock>
-                                    <TextBlock Text="{Binding Role.Title}"></TextBlock>
-                                </StackPanel>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </GroupBox>
-
-            <GroupBox Header="Администраторы" Margin="5">
-                <ListView Background="Black" ItemsSource="{Binding service.adminsList}">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel>
-                                <StackPanel Orientation="Vertical">
-                                    <TextBlock>Логин</TextBlock>
-                                    <TextBlock Text="{Binding Login}"></TextBlock>
-                                </StackPanel>
-                                <StackPanel Orientation="Vertical">
-                                    <TextBlock>Имя</TextBlock>
-                                    <TextBlock Text="{Binding Name}"></TextBlock>
-                                </StackPanel>
-                                <StackPanel Orientation="Vertical">
-                                    <TextBlock>Почта</TextBlock>
-                                    <TextBlock Text="{Binding Email}"></TextBlock>
-                                </StackPanel>
-                                <StackPanel Orientation="Vertical">
-                                    <TextBlock>Запись создана</TextBlock>
-                                    <TextBlock Text="{Binding CreatedAt}"></TextBlock>
-                                </StackPanel>
-                                <StackPanel Orientation="Vertical">
-                                    <TextBlock>Роль</TextBlock>
-                                    <TextBlock Text="{Binding Role.Title}"></TextBlock>
-                                </StackPanel>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </GroupBox>
-
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackPanel>
     </Grid>
 </Page>

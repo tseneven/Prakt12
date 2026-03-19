@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Prakt12.Pages"
       mc:Ignorable="d" 
+      DataContext="{Binding RelativeSource={RelativeSource Self}}"
       xmlns:materialDesign ="http://materialdesigninxaml.net/winfx/xaml/themes"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ProfilePage" Initialized="Page_Initialized">
@@ -15,21 +16,48 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
-
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>   
         <TextBlock FontSize="20" HorizontalAlignment="Center">Ваш профиль</TextBlock>
         <StackPanel Margin="10"  Orientation="Vertical" Grid.Row="1">
-            <TextBox x:Name="PhoneTextBox" AutomationProperties.Name="Phone" Text="{Binding Phone}"  materialDesign:HintAssist.Hint="Телефон"/>
+            <TextBox x:Name="PhoneTextBox" AutomationProperties.Name="Phone" Text="{Binding _currentUser.userProfile.Phone}"  materialDesign:HintAssist.Hint="Телефон"/>
         </StackPanel>
         <StackPanel Margin="10"  Orientation="Vertical" Grid.Row="2">
-            <TextBox x:Name="BioTextBox" AutomationProperties.Name="dis" Text="{Binding Bio}"  materialDesign:HintAssist.Hint="Описание"/>
+            <TextBox x:Name="BioTextBox" AutomationProperties.Name="dis" Text="{Binding _currentUser.userProfile.Bio}"  materialDesign:HintAssist.Hint="Описание"/>
         </StackPanel>
         <StackPanel Margin="10"  Orientation="Vertical" Grid.Row="3">
-            <DatePicker x:Name="DatePickerDate"  materialDesign:HintAssist.Hint="Дата рождения" DisplayDateStart ="01/01/1890" SelectedDate="{Binding Birthday, Mode=TwoWay  }"></DatePicker>
+            <DatePicker x:Name="DatePickerDate"  materialDesign:HintAssist.Hint="Дата рождения" DisplayDateStart ="01/01/1890" SelectedDate="{Binding _currentUser.userProfile.Birthday, Mode=TwoWay  }"></DatePicker>
         </StackPanel>
         <StackPanel HorizontalAlignment="Center" Grid.Row="4" Orientation="Horizontal">
             <Button HorizontalAlignment="Center" Margin="10 0" Click="Button_Click">Назад</Button>
             <Button x:Name="editBtn" HorizontalAlignment="Center" Margin="10 0" Click="Button_Click_1">Редактировать</Button>
         </StackPanel>
+        <ListView Grid.Column="1" Grid.RowSpan="5" ItemsSource="{Binding uigService.userInterestGroups}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock>Название</TextBlock>
+                            <TextBlock Text="{Binding InterestGroup.Title}"></TextBlock>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock>Описание</TextBlock>
+                            <TextBlock Text="{Binding InterestGroup.Description}"></TextBlock>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock>Запись создана</TextBlock>
+                            <TextBlock Text="{Binding JoinedAt}"></TextBlock>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock>Статус</TextBlock>
+                            <TextBlock Text="{Binding IsModeratorText}"></TextBlock>
+                        </StackPanel>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </Page>

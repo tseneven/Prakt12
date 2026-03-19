@@ -1,4 +1,5 @@
 ﻿using Prakt12.Data.Repositorys;
+using Prakt12.Data.Repositorys.UserRepository;
 using Prakt12.Models;
 using System.Windows;
 using System.Windows.Controls;
@@ -75,6 +76,15 @@ MessageBoxButton.YesNo) == MessageBoxResult.Yes)
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new RoleUsers());
+        }
+
+        private void Button_Click_5(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void Button_Click_6(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new GroupInterestList());
         }
     }
 }

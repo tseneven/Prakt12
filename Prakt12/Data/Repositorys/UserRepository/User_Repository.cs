@@ -3,7 +3,7 @@ using Prakt12.Models;
 using System.Collections.ObjectModel;
 using System.Windows;
 
-namespace Prakt12.Data.Repositorys
+namespace Prakt12.Data.Repositorys.UserRepository
 {
     public class User_Repository : IUser_Repository
     {
@@ -26,7 +26,7 @@ namespace Prakt12.Data.Repositorys
                 Password = user.Password,
                 CreatedAt = DateTime.Now.ToString(),
                 userProfile = null,
-                RoleId = 1
+                RoleId = user.RoleId
             };
 
             if(LoginIsExist(_user.Login) && EmailIsExist(_user.Email))
@@ -57,7 +57,7 @@ namespace Prakt12.Data.Repositorys
 
         public void DeleteUser(User user)
         {
-            _db.Remove<User>(user);
+            _db.Remove(user);
             if(Commit() > 0)
                 if(Users.Contains(user))
                     Users.Remove(user);

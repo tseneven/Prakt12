@@ -1,4 +1,6 @@
 ﻿using Prakt12.Data.Repositorys;
+using Prakt12.Data.Repositorys.UserInterestGroupRepository;
+using Prakt12.Data.Repositorys.UserProfileRepository;
 using Prakt12.Models;
 using System.Windows;
 using System.Windows.Controls;
@@ -11,9 +13,10 @@ namespace Prakt12.Pages
     /// </summary>
     public partial class ProfilePage : Page
     {
-        public User? _currentUser { get; set; } = null;
+        public User _currentUser { get; set; }
         bool isEdit = false;
         private IUserProfile_Repository _service = new UserProfile_Repository();
+        public IUserInterestGroup_Repository uigService { get; set; } = new UserInterestGroup_Repository();
 
         public ProfilePage(User user)
         {
@@ -23,8 +26,8 @@ namespace Prakt12.Pages
                 return;
             }
             _currentUser = user;
-            DataContext = _currentUser.userProfile;
             InitializeComponent();
+            uigService.GetByUserID(_currentUser);
         }
 
         private void Page_Initialized(object sender, EventArgs e)

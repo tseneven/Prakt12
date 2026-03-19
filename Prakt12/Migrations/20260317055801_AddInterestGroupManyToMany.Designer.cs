@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Prakt12.Data;
 
@@ -11,9 +12,11 @@ using Prakt12.Data;
 namespace Prakt12.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    partial class AppDBContextModelSnapshot : ModelSnapshot
+    [Migration("20260317055801_AddInterestGroupManyToMany")]
+    partial class AddInterestGroupManyToMany
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -40,7 +43,7 @@ namespace Prakt12.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("InterestGroups");
+                    b.ToTable("InterestGroup");
                 });
 
             modelBuilder.Entity("Prakt12.Models.Role", b =>
@@ -116,7 +119,7 @@ namespace Prakt12.Migrations
 
                     b.HasIndex("InterestGroupId");
 
-                    b.ToTable("UserInterestGroups");
+                    b.ToTable("UserInterestGroup");
                 });
 
             modelBuilder.Entity("Prakt12.Models.UserProfile", b =>

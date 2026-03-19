@@ -1,36 +1,29 @@
-﻿<Page x:Class="Prakt12.Pages.MainPage"
+﻿<Page x:Class="Prakt12.Pages.AddUserToGroup"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:materialDesign ="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:local="clr-namespace:Prakt12.Pages"
       mc:Ignorable="d" 
-      DataContext="{Binding RelativeSource={RelativeSource Self}}"
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="MainPage">
+      DataContext="{Binding RelativeSource={RelativeSource Self}}"
+      xmlns:materialDesign ="http://materialdesigninxaml.net/winfx/xaml/themes"
+      Title="AddUserToGroup">
 
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-
-        <StackPanel Grid.Column="0" Grid.RowSpan="2">
-            <Button Background="AliceBlue" Margin="10" Click="Button_Click">Добавить</Button>
-            <Button Background="AliceBlue" Margin="10" Click="Button_Click_1">Удалить</Button>
-            <Button Background="AliceBlue" Margin="10" Click="Button_Click_2">Редактировать</Button>
-            <Button Background="AliceBlue" Margin="10" Click="Button_Click_3">Открыть профиль</Button>
-            <Button Background="AliceBlue" Margin="10" Click="Button_Click_4">Списки ролей</Button>
-            <Button Background="AliceBlue" Margin="10" Click="Button_Click_6" FontSize="12">Управление группами интересов</Button>
-
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+            <CheckBox x:Name="isModerator" Style="{StaticResource MaterialDesignFilterChipOutlineCheckBox}" IsChecked="{Binding UserInterestGroup.IsModerator}" Cursor="Hand">Модератор</CheckBox>
+            <CheckBox x:Name="isCurrentData" Style="{StaticResource MaterialDesignFilterChipOutlineCheckBox}">Текущая дата</CheckBox>
+            <DatePicker x:Name="Date" Style="{StaticResource MaterialDesignOutlinedDatePicker}" DisplayDateStart="01.01.2000" SelectedDate="01.01.2026">  </DatePicker>
+            <Button Width="200" Margin="0 30 0 0" Click="Button_Click">Добавить</Button>
+            <Button Width="200" Margin="0 0 0 30" Click="Button_Click_1">Назад</Button>
         </StackPanel>
-        <ListView Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="2" Background="Black" ItemsSource="{Binding service.Users}" SelectedItem="{Binding user}">
+        <ListView Grid.Column="1" ItemsSource="{Binding userService.Users}" SelectedItem="{Binding UserInterestGroup.User}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
@@ -58,5 +51,22 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        <ListView Grid.Column="2" ItemsSource="{Binding groupService.InterestGroups}" SelectedItem="{Binding UserInterestGroup.InterestGroup}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock>Название</TextBlock>
+                            <TextBlock Text="{Binding Title}"></TextBlock>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock>Описание</TextBlock>
+                            <TextBlock Text="{Binding Description}"></TextBlock>
+                        </StackPanel>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
     </Grid>
 </Page>
